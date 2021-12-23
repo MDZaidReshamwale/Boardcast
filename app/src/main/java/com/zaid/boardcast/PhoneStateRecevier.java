@@ -17,7 +17,6 @@ public class PhoneStateRecevier extends BroadcastReceiver {
     private static String incoming_number = null;
 
 
-
     @Override
 
     public void onReceive(Context context, Intent intent) {
@@ -28,7 +27,10 @@ public class PhoneStateRecevier extends BroadcastReceiver {
             incomingFlag = false;
 
             String phoneNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
-            Toast.makeText(context,"call OUT:"+phoneNumber, Toast.LENGTH_SHORT).show();
+//
+//            String senderNo = phoneNumber.getDisplayOriginatingAddress();
+            context = null;
+            Toast.makeText(context,"call OUT:" +phoneNumber, Toast.LENGTH_LONG).show();
             Log.i(TAG, "call OUT:"+phoneNumber);
 
         }else{
@@ -44,10 +46,10 @@ public class PhoneStateRecevier extends BroadcastReceiver {
 
                 case TelephonyManager.CALL_STATE_RINGING:
 
-                    incomingFlag = true;//标识当前是来电
+                    incomingFlag = true;
 
                     incoming_number = intent.getStringExtra("incoming_number");
-                    Toast.makeText(context,"Ringing:"+incoming_number, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Ringing:"+incoming_number, Toast.LENGTH_LONG).show();
 
                     Log.i(TAG, "RINGING :"+ incoming_number);
 
@@ -58,7 +60,7 @@ public class PhoneStateRecevier extends BroadcastReceiver {
                     if(incomingFlag){
 
                         Log.i(TAG, "incoming ACCEPT :"+ incoming_number);
-                        Toast.makeText(context,"incoming ACCEPT:"+ incoming_number, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,"incoming ACCEPT:"+ incoming_number, Toast.LENGTH_LONG).show();
 
                     }
 
@@ -71,7 +73,7 @@ public class PhoneStateRecevier extends BroadcastReceiver {
                     if(incomingFlag){
 
                         Log.i(TAG, "incoming IDLE");
-                        Toast.makeText(context,"incoming IDLE"+ incoming_number, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,"incoming IDLE"+ incoming_number, Toast.LENGTH_LONG).show();
 
                     }
 
@@ -80,6 +82,8 @@ public class PhoneStateRecevier extends BroadcastReceiver {
             }
 
         }
+
+
 
 
 }
